@@ -1,0 +1,30 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+IF
+RegionStarted(_Region)
+AND
+IsGameLevel(_Region, 1)
+THEN
+GoalCompleted;
+
+IF
+RegionEnded(_Region)
+AND
+IsCharacterCreationLevel(_Region, 1)
+THEN
+GoalCompleted;
+
+/* Disabled for now - seems to add an extra talent point before the Gift Bag is active
+// Preset cycling
+IF
+SkillAdded(_Dummy, _Skill, 0)
+AND
+CharacterIsPlayer(_Dummy, 1)
+THEN
+LLINDOMITABLE_AddTalent(_Dummy, 1);
+*/
+EXITSECTION
+ENDEXITSECTION
+ParentTargetEdge "__Start"

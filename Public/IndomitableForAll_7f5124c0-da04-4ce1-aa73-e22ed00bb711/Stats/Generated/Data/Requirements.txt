@@ -1,0 +1,3 @@
+requirement "Indomitable","Tag LLINDOMITABLE_INNATE"
+requirement "Raistlin","!TALENT_LoneWolf"
+

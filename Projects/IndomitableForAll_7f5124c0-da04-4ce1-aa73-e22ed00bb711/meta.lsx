@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" />
+    <version major="3" minor="6" revision="6" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="Module" value="7f5124c0-da04-4ce1-aa73-e22ed00bb711" type="23" />
+            <attribute id="Name" value="IndomitableForAll" type="23" />
+            <attribute id="Type" value="Add-on" type="23" />
+            <attribute id="UUID" value="ab58710a-1b69-41d1-b7f3-4040040f6610" type="23" />
+        </node>
+    </region>
+</save>
