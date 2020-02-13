@@ -12,21 +12,21 @@
                             <attribute id="MD5" value="" type="23" />
                             <attribute id="Name" value="Divinity: Original Sin 2" type="22" />
                             <attribute id="UUID" value="1301db3d-1f54-4e98-9be5-5094030916e4" type="22" />
-                            <attribute id="Version" value="371460775" type="4" />
+                            <attribute id="Version" value="372251161" type="4" />
                         </node>
                         <node id="ModuleShortDesc">
                             <attribute id="Folder" value="CMP_DivineTalents_Kamil" type="30" />
                             <attribute id="MD5" value="" type="23" />
                             <attribute id="Name" value="Divine Talents" type="22" />
                             <attribute id="UUID" value="ca32a698-d63e-4d20-92a7-dd83cba7bc56" type="22" />
-                            <attribute id="Version" value="908399030" type="4" />
+                            <attribute id="Version" value="268435456" type="4" />
                         </node>
                     </children>
                 </node>
                 <node id="ModuleInfo">
-                    <attribute id="Author" value="" type="30" />
+                    <attribute id="Author" value="LaughingLeader" type="30" />
                     <attribute id="CharacterCreationLevelName" value="" type="22" />
-                    <attribute id="Description" value="Adds the Indomitable talent to all characters in the game. Requires the Osiris Script Extender. Tip: Divine Talents adds that extra talent point in Character Creation." type="30" />
+                    <attribute id="Description" value="Adds the Indomitable talent to all characters in the game. Requires the Osiris Script Extender. Tip: Divine Talents adds an extra talent point in Character Creation." type="30" />
                     <attribute id="DescriptionName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="DisplayName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Folder" value="IndomitableForAll_7f5124c0-da04-4ce1-aa73-e22ed00bb711" type="30" />
