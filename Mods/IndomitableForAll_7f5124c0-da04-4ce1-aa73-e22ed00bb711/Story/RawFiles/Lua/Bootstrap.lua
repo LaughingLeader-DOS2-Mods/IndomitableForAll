@@ -55,7 +55,7 @@ local function ModuleLoad()
 	Ext.Print("===================================================================")
 end
 
-Ext.RegisterListener("ModuleLoading", ModuleLoad)
+--Ext.RegisterListener("ModuleLoading", ModuleLoad)
 
 function LLINDOMITABLE_AddTalent(character, talent)
 	if CharacterHasTalent(character, talent) ~= 1 then
