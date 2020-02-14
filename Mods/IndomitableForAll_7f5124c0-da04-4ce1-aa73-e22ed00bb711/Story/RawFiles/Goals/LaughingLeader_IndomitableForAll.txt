@@ -55,9 +55,9 @@ LLINDOMITABLE_AddTalent((CHARACTERGUID)_Char, 1) // IsPlayer
 AND
 CharacterHasTalent(_Char, "Indomitable", 0)
 THEN
-//CharacterAddTalent(_Char, "Indomitable");
-NRD_PlayerSetBaseTalent(_Char, "Indomitable", 1);
-CharacterAddCivilAbilityPoint(_Char, 0);
+CharacterAddTalent(_Char, "Indomitable");
+//NRD_PlayerSetBaseTalent(_Char, "Indomitable", 1);
+//CharacterAddCivilAbilityPoint(_Char, 0);
 
 PROC
 LLINDOMITABLE_AddTalent((CHARACTERGUID)_Char, 0) // NPC
@@ -102,16 +102,6 @@ AND
 CharacterIsPlayer(_Char, _IsPlayer)
 THEN
 LLINDOMITABLE_AddTalent(_Char, _IsPlayer);
-
-//Safety
-IF
-CharacterLockedTalent(_Char, "Indomitable")
-AND
-ObjectGetFlag(_Char, "LLINDOMITABLE_AddTalent_FailsafeCheck", 0)
-THEN
-ObjectSetFlag(_Char, "LLINDOMITABLE_AddTalent_FailsafeCheck", 0);
-ProcObjectTimerCancel(_Char, "Timers_LLINDOMITABLE_CheckAddTalent");
-ProcObjectTimer(_Char, "Timers_LLINDOMITABLE_CheckAddTalent", 500);
 //END_REGION
 
 //REGION PRESETS
