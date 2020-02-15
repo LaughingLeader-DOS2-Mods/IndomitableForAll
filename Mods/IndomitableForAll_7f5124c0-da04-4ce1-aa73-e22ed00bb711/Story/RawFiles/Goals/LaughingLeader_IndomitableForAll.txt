@@ -1,138 +1,34 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+LLINDOMITABLE_Internal_CompleteIfStarted();
 KBSECTION
-//REGION EXTRA_POINT_FIX
-/*
 PROC
-LLINDOMITABLE_AddTalent((CHARACTERGUID)_Char, (INTEGER)_IsPlayer)
-AND
-CharacterGetTalentPoints(_Char, _Points)
+LLINDOMITABLE_Internal_Start()
 THEN
-DB_LLINDOMITABLE_Temp_PlayerTalentPoints(_Char, _Points);
-ProcObjectTimerCancel(_Char, "Timers_LLINDOMITABLE_FixTalentPoints");
-ProcObjectTimer(_Char, "Timers_LLINDOMITABLE_FixTalentPoints", 250);
-
-PROC
-ProcObjectTimerFinished((CHARACTERGUID)_Char, "Timers_LLINDOMITABLE_FixTalentPoints")
-AND
-DB_LLINDOMITABLE_Temp_PlayerTalentPoints(_Char, _Points)
-AND
-CharacterGetTalentPoints(_Char, _NewPoints)
-AND
-_NewPoints > _Points
-AND
-IntegerSubtract(_NewPoints, _Points, _SubtractPoints)
-AND
-IntegertoString(_SubtractPoints, _SubtractPointsStr)
-AND
-String(_Char, _CharStr)
-AND
-StringConcatenate("[IndomitableForAll:LaughingLeader_IndomitableForAll.txt] Removed (", _SubtractPointsStr, _Msg1)
-AND
-StringConcatenate(_Msg1, ") extra talent point(s) from (", _Msg2)
-AND
-StringConcatenate(_Msg2, _CharStr, _Msg3)
-AND
-StringConcatenate(_Msg3, ") after adding Indomitable. **BUG WORKAROUND**", _Msg4)
-THEN
-CharacterAddTalentPoint(_Char, _SubtractPoints);
-NOT DB_LLINDOMITABLE_Temp_PlayerTalentPoints(_Char, _Points);
-NRD_DebugLog(_Msg4);
-
-PROC
-ProcObjectTimerFinished((CHARACTERGUID)_Char, "Timers_LLINDOMITABLE_FixTalentPoints")
-AND
-DB_LLINDOMITABLE_Temp_PlayerTalentPoints(_Char, _Points)
-THEN
-NOT DB_LLINDOMITABLE_Temp_PlayerTalentPoints(_Char, _Points);
-*/
-//END_REGION
-
-//REGION ADD_TALENT
-PROC
-LLINDOMITABLE_AddTalent((CHARACTERGUID)_Char, 1) // IsPlayer
-AND
-CharacterHasTalent(_Char, "Indomitable", 0)
-THEN
-CharacterAddTalent(_Char, "Indomitable");
-//NRD_PlayerSetBaseTalent(_Char, "Indomitable", 1);
-//CharacterAddCivilAbilityPoint(_Char, 0);
-
-PROC
-LLINDOMITABLE_AddTalent((CHARACTERGUID)_Char, 0) // NPC
-THEN
-NRD_LuaCall("LLINDOMITABLE_AddTalent", (STRING)_Char, "Indomitable");
-
-//REGION ADD_TO_ALL
-/* Players/Origins may lose the talent from CC presets. */
-PROC
-LLINDOMITABLE_AddToAll()
-AND
-DB_IsPlayer(_Player)
-THEN
-LLINDOMITABLE_AddTalent(_Player, 1);
-
-PROC
-LLINDOMITABLE_AddToAll()
-AND
-DB_Origins(_Origin)
-AND
-CharacterIsPlayer(_Origin, _IsPlayer)
-THEN
-LLINDOMITABLE_AddTalent(_Origin, _IsPlayer);
-
-/*
-For pre-existing saves where an NPC may be missing the talent for some reason.
-Should probably not happen since the Character stat override adds the talent.
-*/
-PROC
-LLINDOMITABLE_AddToAll()
-AND
-DB_CurrentLevel(_Region)
-AND
-NOT DB_LLINDOMITABLE_IteratedLevel(_Region)
-THEN
-DB_LLINDOMITABLE_IteratedLevel(_Region);
-CharacterLaunchOsirisOnlyIterator("LLINDOMITABLE_AddTalent");
+DebugBreak("[LLINDOMITABLE] Starting Indomitable.");
+GoalCompleted;
 
 IF
-StoryEvent((CHARACTERGUID)_Char, "LLINDOMITABLE_AddTalent")
-AND
-CharacterIsPlayer(_Char, _IsPlayer)
+GameEventSet("GAMEEVENT_GameStarted")
 THEN
-LLINDOMITABLE_AddTalent(_Char, _IsPlayer);
-//END_REGION
+LLINDOMITABLE_Internal_Start();
 
-//REGION PRESETS
 PROC
-Proc_ApplyPreset((CHARACTERGUID)_Char,(STRING)_Preset)
+LLINDOMITABLE_Internal_CompleteIfStarted()
+AND
+DB_StoryStarted((INTEGER)_)
 THEN
-ProcObjectTimerCancel(_Char, "Timers_LLINDOMITABLE_CheckAddTalent");
-ProcObjectTimer(_Char, "Timers_LLINDOMITABLE_CheckAddTalent", 500);
+DebugBreak("[LLINDOMITABLE:CompleteIfStarted] Indomitable was added to an existing save. Started from the INIT section.");
+LLINDOMITABLE_Internal_Start();
 
 IF
-StoryEvent((CHARACTERGUID)_Char, "LeaderLib_PresetApplied")
-THEN
-ProcObjectTimerCancel(_Char, "Timers_LLINDOMITABLE_CheckAddTalent");
-ProcObjectTimer(_Char, "Timers_LLINDOMITABLE_CheckAddTalent", 500);
-
-PROC
-ProcObjectTimerFinished((CHARACTERGUID)_Char, "Timers_LLINDOMITABLE_CheckAddTalent")
+SavegameLoaded(_,_,_,_)
 AND
-CharacterIsPlayer(_Char, _IsPlayer)
+DB_StoryStarted(_)
 THEN
-LLINDOMITABLE_AddTalent(_Char, _IsPlayer);
-
-PROC
-ProcObjectTimerFinished((CHARACTERGUID)_Char, "Timers_LLINDOMITABLE_CheckAddTalent")
-AND
-CharacterHasTalent(_Char, "Indomitable", 1)
-AND
-ObjectGetFlag(_Char, "LLINDOMITABLE_AddTalent_FailsafeCheck", 1)
-THEN
-ObjectClearFlag(_Char, "LLINDOMITABLE_AddTalent_FailsafeCheck", 0);
-//END_REGION
+DebugBreak("[LLINDOMITABLE:SavegameLoaded] Indomitable was added to an existing save.");
+LLINDOMITABLE_Internal_Start();
 EXITSECTION
 ENDEXITSECTION
 ParentTargetEdge "__Start"

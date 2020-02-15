@@ -1,0 +1,8 @@
+Key	Content
+LLINDOMITABLE_INNATE	Nothing
+LLINDOMITABLE_DISABLED	None - This is Disabled
+LLINDOMITABLE_INDOMITABLE_DisplayName	Indomitable
+Stats_LLINDOMITABLE_Indomitable	Indomitable
+LLINDOMITABLE_INDOMITABLE_CD_DisplayName	Exausted (Indomitable)
+LLINDOMITABLE_INDOMITABLE_CD_Description	Character is vulnerable to debilitating statuses, and cannot resist them until they recover.
+Stats_LLINDOMITABLE_Indomitable_CD	Exausted (Indomitable)

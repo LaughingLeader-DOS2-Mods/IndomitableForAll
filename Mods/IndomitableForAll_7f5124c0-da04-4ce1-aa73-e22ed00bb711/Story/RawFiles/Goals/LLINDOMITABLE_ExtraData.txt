@@ -1,0 +1,56 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableChance", 100.0, 0.0, 100.0);
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableDuration", 12.0, -1.0, 999.0);
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableCooldownDuration", 18.0, 0.0, 999.0);
+KBSECTION
+
+PROC
+LLINDOMITABLE_ExtraData_Load()
+AND
+DB_LLINDOMITABLE_ExtraData_Real(_Key, _LastValue, _Min, _Max)
+AND
+NRD_StatGetExtraData(_Key, _CurrentValue)
+AND
+RealMin(_CurrentValue, _Max, _CappedA)
+AND
+RealMax(_CappedA, _Min, _ClampedValue)
+THEN
+NOT DB_LLINDOMITABLE_ExtraData_Real(_Key, _LastValue, _Min, _Max);
+DB_LLINDOMITABLE_ExtraData_Real(_Key, _ClampedValue, _Min, _Max);
+
+PROC
+LLINDOMITABLE_ExtraData_Load()
+AND
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableChance", _Chance, _Min, _Max)
+THEN
+NRD_LuaCall("LLINDOMITABLE_Ext_SetIndomitableChance", (STRING)_Chance);
+
+/*
+PROC
+LLINDOMITABLE_ExtraData_Load()
+AND
+DB_LLINDOMITABLE_ExtraData_Int((STRING)_Key, (INTEGER)_LastValue)
+AND
+NRD_StatGetExtraData(_Key, _CurrentValueR)
+AND
+Integer(_CurrentValueR, _CurrentValue)
+THEN
+NOT DB_LLINDOMITABLE_ExtraData_Int(_Key, _LastValue);
+DB_LLINDOMITABLE_ExtraData_Int(_Key, _CurrentValue);
+*/
+
+IF
+SavegameLoaded(_,_,_,_)
+THEN
+LLINDOMITABLE_ExtraData_Load();
+
+IF
+GameModeStarted(_,_)
+THEN
+LLINDOMITABLE_ExtraData_Load();
+
+EXITSECTION
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_IndomitableForAll"

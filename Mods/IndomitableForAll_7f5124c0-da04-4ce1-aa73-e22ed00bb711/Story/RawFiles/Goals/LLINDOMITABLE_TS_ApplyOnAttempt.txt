@@ -1,0 +1,30 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+IF
+NRD_OnStatusAttempt((CHARACTERGUID)_Char, _Status, _Handle, _Source)
+AND
+_Status != "INSURFACE"
+AND
+_Status != "HIT"
+AND
+_Status != "LLINDOMITABLE_INDOMITABLE"
+AND
+_Status != "LLINDOMITABLE_INDOMITABLE_CD"
+AND
+ObjectIsOnStage(_Char, 1)
+AND
+CharacterIsDead(_Char, 0)
+AND
+HasActiveStatus(_Char, "LLINDOMITABLE_INDOMITABLE", 0)
+AND
+HasActiveStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", 0)
+AND
+LLINDOMITABLE_QRY_CanApplyIndomitable(_Char, _Status, 1)
+THEN
+NRD_StatusPreventApply(_Char, _Handle, 1);
+LLINDOMITABLE_ApplyIndomitable(_Char);
+EXITSECTION
+ENDEXITSECTION
+ParentTargetEdge "LLINDOMITABLE_GameScripts"

@@ -1,0 +1,44 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+PROC
+LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char)
+AND
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableTurns", _Duration, _, _)
+THEN
+ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE", _Duration, 0, _Char);
+
+IF
+CharacterStatusRemoved(_Char, "LLINDOMITABLE_INDOMITABLE", _)
+AND
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableCooldownDuration", _Duration, _, _)
+THEN
+ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _Duration, 0, _Char);
+
+IF
+CharacterPrecogDying(_Char)
+AND
+HasActiveStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", 1)
+AND
+GetStatusTurns(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _Turns)
+THEN
+DB_LLINDOMITABLE_Temp_IndomitableCooldown(_Char, _Turns);
+
+IF
+CharacterStatusRemoved(_Char, "RESURRECT", _)
+AND
+DB_LLINDOMITABLE_Temp_IndomitableCooldown(_Char, _Turns)
+AND
+Real(_Turns, _TurnsR)
+AND
+RealProduct(_TurnsR, 6.0, _Duration)
+THEN
+ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _Duration);
+NOT DB_LLINDOMITABLE_Temp_IndomitableCooldown(_Char, _Turns);
+
+EXITSECTION
+//Cleared when a region ends
+SysClear("DB_LLINDOMITABLE_Temp_IndomitableCooldown", 2);
+ENDEXITSECTION
+ParentTargetEdge "LLINDOMITABLE_GameScripts"

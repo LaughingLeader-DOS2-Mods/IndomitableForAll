@@ -337,3 +337,5 @@ DB_DW_PaladinWounded 1
 DB_RC_DW_SurpriseDate_Magisters 1
 DB_ARX_Barracks_2ndFloor_Archives_SurfaceTypes 2
 DB_ARX_Pipes_SurfaceTransformations 2
+DB_LeaderLib_ModApi_GlobalSettings_Register_Flag 3
+DB_LeaderLib_ModApi_GlobalSettings_Register_Flag 4

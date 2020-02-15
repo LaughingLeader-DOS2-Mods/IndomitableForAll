@@ -1,0 +1,98 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+KBSECTION
+IF
+TextEventSet("llindom_luareset")
+THEN
+NRD_LuaReset(1);
+
+//REGION REMOVE_FROM_ALL
+PROC
+LLINDOMITABLE_RemoveFromAll()
+THEN
+CharacterLaunchOsirisOnlyIterator("LLINDOMITABLE_RemoveTalent");
+
+IF
+StoryEvent((CHARACTERGUID)_Char, "LLINDOMITABLE_RemoveTalent")
+AND
+CharacterIsPlayer(_Char, _IsPlayer)
+THEN
+LLINDOMITABLE_RemoveTalent(_Char, _IsPlayer);
+
+PROC
+LLINDOMITABLE_RemoveTalent((CHARACTERGUID)_Char, 1) // IsPlayer
+AND
+CharacterHasTalent(_Char, "Indomitable", 1)
+THEN
+CharacterRemoveTalent(_Char, "Indomitable");
+NRD_PlayerSetBaseTalent(_Char, "Indomitable", 0);
+CharacterAddCivilAbilityPoint(_Char, 0);
+
+PROC
+LLINDOMITABLE_RemoveTalent((CHARACTERGUID)_Char, 0) // NPC
+THEN
+NRD_LuaCall("LLINDOMITABLE_Ext_RemoveTalent", (STRING)_Char, "Indomitable");
+//END_REGION
+
+//REGION LEADERLIB
+/* Called when a mod is registered for the first time. */
+PROC
+LeaderLib_Mods_OnModRegistered(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (STRING)_Name, (STRING)_Author, (INTEGER)_Version, (INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
+THEN
+DB_LeaderLib_ModApi_GlobalSettings_Register_Flag("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LaughingLeader", "LLINDOMITABLE_Settings_ApplyOnAttempt");
+
+/* Called when a mod's registered version changes. */
+/*
+PROC
+LeaderLib_Mods_OnVersionChanged(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (INTEGER)_LastVersion, (INTEGER)_NextVersion)
+THEN
+DB_NOOP(1);
+*/
+/*
+PROC
+LeaderLib_Mods_OnVersionChanged(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (INTEGER)_LastMajor, (INTEGER)_LastMinor, (INTEGER)_LastRevision, (INTEGER)_LastBuild, (INTEGER)_NextMajor, (INTEGER)_NextMinor, (INTEGER)_NextRevision, (INTEGER)_NextBuild)
+THEN
+DB_NOOP(1);
+*/
+//END_REGION
+
+//REGION UPDATING
+IF
+SavegameLoading(_,_,_,_)
+THEN
+NRD_LuaCall("LLINDOMITABLE_Ext_UpdateMod");
+
+PROC
+LLINDOMITABLE_OnGetVersion((INTEGER)_Next)
+AND
+DB_LLINDOMITABLE_LastVersion(_Last)
+THEN
+NOT DB_LLINDOMITABLE_LastVersion(_Last);
+DB_LLINDOMITABLE_LastVersion(_Next);
+LLINDOMITABLE_OnVersionChanged(_Last, _Next);
+
+PROC
+LLINDOMITABLE_OnGetVersion((INTEGER)_Next)
+AND
+NOT DB_LLINDOMITABLE_LastVersion(_)
+THEN
+DB_LLINDOMITABLE_LastVersion(_Next);
+LLINDOMITABLE_OnVersionChanged(-1, _Next);
+
+PROC
+LLINDOMITABLE_OnVersionChanged((INTEGER)_Last, (INTEGER)_Next)
+THEN
+DB_NOOP(1);
+
+// Remove all Indomitable talents
+PROC
+LLINDOMITABLE_OnVersionChanged(-1, (INTEGER)_Next)
+AND
+_Next > 268435456
+THEN
+SysActivateGoal("LLINDOMITABLE_Updater_GameStarted");
+//END_REGION
+EXITSECTION
+ENDEXITSECTION
+ParentTargetEdge "LaughingLeader_IndomitableForAll"
