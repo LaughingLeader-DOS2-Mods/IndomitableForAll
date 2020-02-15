@@ -35,6 +35,13 @@ THEN
 NRD_LuaCall("LLINDOMITABLE_Ext_RemoveTalent", (STRING)_Char, "Indomitable");
 //END_REGION
 
+PROC
+LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char)
+AND
+DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableDuration", _Duration, _, _)
+THEN
+ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE", _Duration, 0, _Char);
+
 //REGION LEADERLIB
 /* Called when a mod is registered for the first time. */
 PROC

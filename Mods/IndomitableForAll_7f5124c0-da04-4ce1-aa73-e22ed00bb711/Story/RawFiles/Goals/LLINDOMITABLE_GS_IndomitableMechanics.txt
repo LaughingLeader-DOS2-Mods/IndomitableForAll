@@ -2,12 +2,6 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 KBSECTION
-PROC
-LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char)
-AND
-DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableTurns", _Duration, _, _)
-THEN
-ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE", _Duration, 0, _Char);
 
 IF
 CharacterStatusRemoved(_Char, "LLINDOMITABLE_INDOMITABLE", _)

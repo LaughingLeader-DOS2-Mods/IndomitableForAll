@@ -31,4 +31,3 @@ DebugBreak("[LLINDOMITABLE:SavegameLoaded] Indomitable was added to an existing 
 LLINDOMITABLE_Internal_Start();
 EXITSECTION
 ENDEXITSECTION
-ParentTargetEdge "__Start"
