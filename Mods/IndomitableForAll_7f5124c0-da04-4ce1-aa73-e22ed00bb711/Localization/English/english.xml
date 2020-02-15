@@ -1,12 +1,10 @@
 <contentList>
-	<content contentuid="h67e90c1eg8eefg4313ga2efg34d42f163756" OT="tag" Comment="For replacing 'Requires tag' when using tag requirements"></content>
-	<content contentuid="h37ab421bgc879g4e3cgabdegf6ec70854bea" OT="Indomitable">&lt;font color='#666666'&gt;(Innate) Indomitable&lt;/font&gt;</content>
-	<content contentuid="haa3cebcagba62g47bbg8546gf0c154e0e46f" Comment="Indomitable Description">You gain immunity to Stunned, Frozen, Knocked Down, Polymorphed, Petrified, Crippled for 1 turn after being affected by one of these statuses. Can happen once every 3 turns.&lt;br /&gt;&lt;font color='#999999'&gt;This is an innate talent, and is automatically inherited.&lt;/font&gt;</content>
-	<content contentuid="h690c733ag72e8g4d39g8a4dgdf30fccd78fc" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_DISABLED">None - This is Disabled</content>
+	<content contentuid="h690c733ag72e8g4d39g8a4dgdf30fccd78fc" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_DISABLED">None (Disabled)</content>
 	<content contentuid="h40c50590gf31cg4afcgb2d2g260ad948e2d3" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INDOMITABLE_CD_Description">Character is vulnerable to debilitating statuses, and cannot resist them until they recover.</content>
 	<content contentuid="he7b114efgfa4cg4096g9ae2gb92da3213b09" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INDOMITABLE_CD_DisplayName">Exausted (Indomitable)</content>
+	<content contentuid="hbf10ecd2g96dag4a14gb696g24269ca4a069" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INDOMITABLE_Description">Character has immunity to debilitating statuses. Afterwards, &lt;font color=&apos;#CCCC00&apos;&gt;Exaustion&lt;/font&gt; will set in, &lt;font color=&apos;#FF3333&apos;&gt;preventing&lt;/font&gt; Indomitable for 3 turns.</content>
 	<content contentuid="h212ebe65g3b7cg4bd8gbf53gdf76baf222dd" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INDOMITABLE_DisplayName">Indomitable</content>
-	<content contentuid="h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INNATE">Nothing</content>
+	<content contentuid="h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INNATE">Innate</content>
 	<content contentuid="h90819439ga7e8g4edcgac04g086d1f6b4baf" Source="LLINDOMITABLE_Misc.lsb" Key="Stats_LLINDOMITABLE_Indomitable">Indomitable</content>
 	<content contentuid="h837a7dfbg3021g4587g83a7ga99348afe9f8" Source="LLINDOMITABLE_Misc.lsb" Key="Stats_LLINDOMITABLE_Indomitable_CD">Exausted (Indomitable)</content>
 </contentList>
