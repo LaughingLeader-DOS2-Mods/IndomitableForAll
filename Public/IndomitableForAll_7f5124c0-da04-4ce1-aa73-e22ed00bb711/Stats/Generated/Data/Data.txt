@@ -1,3 +1,4 @@
 key "LLINDOMITABLE_IndomitableChance","100.0"
-key "LLINDOMITABLE_IndomitableDuration","12.0"
+key "LLINDOMITABLE_IndomitableDuration_OnAttempt","6.0"
+key "LLINDOMITABLE_IndomitableDuration_OnRemoval","12.0"
 key "LLINDOMITABLE_IndomitableCooldownDuration","18.0"
