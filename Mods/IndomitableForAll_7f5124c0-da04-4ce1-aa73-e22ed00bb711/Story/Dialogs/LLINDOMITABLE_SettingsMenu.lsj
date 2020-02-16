@@ -320,6 +320,14 @@
                                  {
                                     "flag" : [
                                        {
+                                          "name" : {"type" : 22, "value" : "LLINDOMITABLE_SaveGlobalSettings"},
+                                          "paramval" : {"type" : 4, "value" : 0},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}},
+                                 {
+                                    "flag" : [
+                                       {
                                           "name" : {"type" : 22, "value" : "LLINDOMITABLE_Settings_ApplyOnAttempt"},"value" : {"type" : 19, "value" : 0}}
                                     ],"type" : {"type" : 22, "value" : "Global"}}
                               ]
@@ -564,6 +572,14 @@
                                  {
                                     "flag" : [
                                        {
+                                          "name" : {"type" : 22, "value" : "LLINDOMITABLE_SaveGlobalSettings"},
+                                          "paramval" : {"type" : 4, "value" : 0},
+                                          "value" : {"type" : 19, "value" : 1}
+                                       }
+                                    ],"type" : {"type" : 22, "value" : "Character"}},
+                                 {
+                                    "flag" : [
+                                       {
                                           "name" : {"type" : 22, "value" : "LLINDOMITABLE_Settings_ApplyOnAttempt"},"value" : {"type" : 19, "value" : 1}}
                                     ],"type" : {"type" : 22, "value" : "Global"}}
                               ]
@@ -590,7 +606,7 @@
          },
          "editorData" : {
             "needLayout" : {"type" : 19, "value" : 0},
-            "nextNodeId" : {"type" : 5, "value" : 12}
+            "nextNodeId" : {"type" : 5, "value" : 13}
          }
       }
    }
