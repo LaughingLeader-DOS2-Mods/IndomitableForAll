@@ -118,7 +118,7 @@ local immunity_flags = {
 
 --- No StatusData entries
 local engine_statuses = {
-	["CHARMED"] = true,
+	["CHARMED"] = "CharmImmunity",
 }
 
 local resisted_statuses = {}
@@ -137,7 +137,7 @@ local function SessionLoading()
 		if immunity_flags[flag] == true then
 			total = total + 1
 			Ext.Print("[IndomitableForAll:Bootstrap.lua] Adding status ("..stat..").")
-			resisted_statuses[stat] = true
+			resisted_statuses[stat] = flag
 		end
 	end
 	Ext.Print("[IndomitableForAll:Bootstrap.lua] Listening for "..tostring(total).." statuses for Indomitable.")
@@ -156,10 +156,20 @@ local ignore_character_tags = {
 	["LLMIME_Decoy"] = true,
 }
 
+local function is_immune(character, status)
+	local flag = resisted_statuses[status]
+	if flag ~= nil and NRD_CharacterGetStatInt(character, flag) > 0 then
+		Ext.Print("[IndomitableForAll:Bootstrap.lua] ("..character..") is immune to ("..status..") via ("..flag..")")
+		return true
+	end
+	return false
+end
+
 local function ignore_character(character)
 	if HasActiveStatus(character, "LLINDOMITABLE_INDOMITABLE") == 1 or HasActiveStatus(character, "LLINDOMITABLE_INDOMITABLE_CD") == 1 then
 		return true
-	elseif Ext.IsModLoaded("7e737d2f-31d2-4751-963f-be6ccc59cd0c") then -- LeaderLib
+	else
+		--if Ext.IsModLoaded("7e737d2f-31d2-4751-963f-be6ccc59cd0c") then -- LeaderLib
 		for flag,_ in pairs(ignore_character_flags) do
 			if ObjectGetFlag(character, flag) == 1 then
 				return true
@@ -186,7 +196,8 @@ local INDOMITABLE_CHANCE = 100.0
 
 local function LLINDOMITABLE_CanApplyIndomitable(character, status)
 	--if ignored_statuses[status] ~= true and resisted_statuses[status] == true then
-	if ignored_statuses[status] ~= true and ignore_character(character) == false and resisted_statuses[status] == true then
+	if (ignored_statuses[status] ~= true and ignore_character(character) == false and 
+			resisted_statuses[status] ~= nil and is_immune(character, status) == false) then
 		if INDOMITABLE_CHANCE >= 100.0 then
 			return 1
 		elseif INDOMITABLE_CHANCE <= 0.0 then
