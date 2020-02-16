@@ -13,6 +13,8 @@ _Status != "LLINDOMITABLE_INDOMITABLE"
 AND
 _Status != "LLINDOMITABLE_INDOMITABLE_CD"
 AND
+NOT NRD_StatusGetInt(_Char, _Handle, "CanEnterChance", 0)
+AND
 ObjectIsOnStage(_Char, 1)
 AND
 CharacterIsDead(_Char, 0)
