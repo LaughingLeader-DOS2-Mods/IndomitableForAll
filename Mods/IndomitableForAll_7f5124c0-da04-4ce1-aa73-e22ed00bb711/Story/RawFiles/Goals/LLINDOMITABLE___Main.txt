@@ -69,7 +69,7 @@ PROC
 LeaderLib_Mods_OnModRegistered(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (INTEGER)_Version, (INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
 THEN
 DB_LeaderLib_ModApi_GlobalSettings_Register_Flag("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LaughingLeader", "LLINDOMITABLE_Settings_ApplyOnAttempt");
-DB_LeaderLib_ModApi_RegisterMenu("LaughingLeader.IndomitableForAll", "[Indomitable For All] Settings", "LLINDOMITABLE_SettingsMenu", "7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LaughingLeader");
+DB_LeaderLib_ModApi_RegisterMenu("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LLINDOMITABLE_SettingsMenu", "[Indomitable For All] Settings");
 
 /* Called when a mod's registered version changes. */
 /*
