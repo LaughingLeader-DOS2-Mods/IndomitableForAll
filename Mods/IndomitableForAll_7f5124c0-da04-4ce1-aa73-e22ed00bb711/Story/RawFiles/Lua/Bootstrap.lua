@@ -31,7 +31,7 @@ local player_stats = {
 	--["Summon_Earth_Ooze_Player"] = true,
 }
 
-local function ModuleLoad()
+local function ModuleLoading_AddIndomatible()
 	Ext.Print("===================================================================")
 	Ext.Print("[IndomitableForAll:Bootstrap.lua] Adding Indomitable to all Character stats.")
 	local totalOverrides = 0
@@ -55,7 +55,7 @@ local function ModuleLoad()
 	Ext.Print("===================================================================")
 end
 
---Ext.RegisterListener("ModuleLoading", ModuleLoad)
+--Ext.RegisterListener("ModuleLoading", ModuleLoading_AddIndomatible)
 
 function LLINDOMITABLE_Ext_AddTalent(character, talent)
 	if CharacterHasTalent(character, talent) ~= 1 then
