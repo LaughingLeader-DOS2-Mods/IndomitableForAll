@@ -91,15 +91,15 @@ SetStoryEvent(_Host, "LeaderLib_Commands_SaveGlobalSettings");
 PROC
 LLINDOMITABLE_InitLeaderLibSettings()
 AND
-NOT DB_LeaderLib_GlobalSettings_GlobalFlags((STRING)"7f5124c0-da04-4ce1-aa73-e22ed00bb711", (STRING)"LLINDOMITABLE_Settings_ApplyOnAttempt", (INTEGER)_)
+NOT DB_LeaderLib_GlobalSettings_GlobalFlags(7f5124c0-da04-4ce1-aa73-e22ed00bb711, "LLINDOMITABLE_Settings_ApplyOnAttempt", (INTEGER)_)
 THEN
-DB_LeaderLib_ModApi_GlobalSettings_Register_GlobalFlag("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LLINDOMITABLE_Settings_ApplyOnAttempt", 1);
+DB_LeaderLib_ModApi_GlobalSettings_Register_GlobalFlag(7f5124c0-da04-4ce1-aa73-e22ed00bb711, "LLINDOMITABLE_Settings_ApplyOnAttempt", 1);
 
 PROC
 LLINDOMITABLE_InitLeaderLibSettings()
 AND
 // DB_LeaderLib_ModMenu_RegisteredMenuData(_ID, _DisplayName, _Dialog, _ModID, _Author);
-NOT DB_LeaderLib_ModMenu_RegisteredMenuData((STRING)"7f5124c0-da04-4ce1-aa73-e22ed00bb711", (STRING)_, (STRING)"LLINDOMITABLE_SettingsMenu", (STRING)_, (STRING)_)
+NOT DB_LeaderLib_ModMenu_RegisteredMenuData("7f5124c0-da04-4ce1-aa73-e22ed00bb711", (STRING)_, "LLINDOMITABLE_SettingsMenu", (STRING)_, (STRING)_)
 THEN
 DB_LeaderLib_ModApi_RegisterMenu("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LLINDOMITABLE_SettingsMenu", "[Indomitable For All] Settings");
 
