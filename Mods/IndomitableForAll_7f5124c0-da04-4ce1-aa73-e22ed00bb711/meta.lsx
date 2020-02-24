@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <save>
     <header version="2" />
     <version major="3" minor="6" revision="6" build="0" />
@@ -9,7 +9,7 @@
                 <node id="ModuleInfo">
                     <attribute id="Author" value="LaughingLeader" type="30" />
                     <attribute id="CharacterCreationLevelName" value="" type="22" />
-                    <attribute id="Description" value="Adds the Indomitable talent to all characters in the game. Requires the Osiris Script Extender. Tip: Divine Talents adds an extra talent point in Character Creation." type="30" />
+                    <attribute id="Description" value="All characters gain Indomitable upon removal of a crowd-control status, preventing chain-stunning. Automatic support for modded statuses. Requires the Osiris Script Extender." type="30" />
                     <attribute id="DescriptionName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="DisplayName" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                     <attribute id="Folder" value="IndomitableForAll_7f5124c0-da04-4ce1-aa73-e22ed00bb711" type="30" />
@@ -24,7 +24,7 @@
                     <attribute id="Tags" value="" type="30" />
                     <attribute id="Type" value="Add-on" type="22" />
                     <attribute id="UUID" value="7f5124c0-da04-4ce1-aa73-e22ed00bb711" type="22" />
-                    <attribute id="Version" value="285212674" type="4" />
+                    <attribute id="Version" value="285278208" type="4" />
                     <children>
                         <node id="PublishVersion">
                             <attribute id="Version" value="909321303" type="4" />
