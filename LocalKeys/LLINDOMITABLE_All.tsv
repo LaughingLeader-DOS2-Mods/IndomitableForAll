@@ -2,7 +2,7 @@ Key	Content
 LLINDOMITABLE_INNATE	Innate
 LLINDOMITABLE_DISABLED	None (Disabled)
 LLINDOMITABLE_INDOMITABLE_DisplayName	Indomitable
-LLINDOMITABLE_INDOMITABLE_Description	Character has immunity to debilitating statuses. Afterwards, <font color='#CCCC00'>Exaustion</font> will set in, <font color='#FF3333'>preventing</font> Indomitable for 3 turns.
+LLINDOMITABLE_INDOMITABLE_Description	Character has immunity to debilitating statuses.<br>Afterwards, <font color='#CCCC00'>Exaustion</font> will set in, <font color='#FF3333'>preventing</font> Indomitable for 3 turns.
 Stats_LLINDOMITABLE_Indomitable	Indomitable
 LLINDOMITABLE_INDOMITABLE_CD_DisplayName	Exausted (Indomitable)
 LLINDOMITABLE_INDOMITABLE_CD_Description	Character is vulnerable to debilitating statuses, and cannot resist them until they recover.
