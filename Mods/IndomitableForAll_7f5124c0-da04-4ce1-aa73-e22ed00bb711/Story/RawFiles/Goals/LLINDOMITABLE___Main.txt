@@ -104,15 +104,20 @@ THEN
 DB_LeaderLib_ModApi_RegisterMenu("7f5124c0-da04-4ce1-aa73-e22ed00bb711", "LLINDOMITABLE_SettingsMenu", "[Indomitable For All] Settings");
 
 /* Called when a mod is registered for the first time. */
+/*
 PROC
 LeaderLib_Mods_OnModRegistered(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (INTEGER)_Version, (INTEGER)_Major, (INTEGER)_Minor, (INTEGER)_Revision, (INTEGER)_Build)
 THEN
 LLINDOMITABLE_InitLeaderLibSettings();
+*/
 
 /* Called when a mod's registered version changes. */
 PROC
 LeaderLib_Mods_OnVersionChanged(7f5124c0-da04-4ce1-aa73-e22ed00bb711, (INTEGER)_LastVersion, (INTEGER)_NextVersion)
+AND
+NOT DB_LLINDOMITABLE_RegisteredLeaderLibSettings(1)
 THEN
+DB_LLINDOMITABLE_RegisteredLeaderLibSettings(1);
 LLINDOMITABLE_InitLeaderLibSettings();
 
 /*
