@@ -7,4 +7,9 @@
 	<content contentuid="h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5" Source="LLINDOMITABLE_Misc.lsb" Key="LLINDOMITABLE_INNATE">Innate</content>
 	<content contentuid="h90819439ga7e8g4edcgac04g086d1f6b4baf" Source="LLINDOMITABLE_Misc.lsb" Key="Stats_LLINDOMITABLE_Indomitable">Indomitable</content>
 	<content contentuid="h837a7dfbg3021g4587g83a7ga99348afe9f8" Source="LLINDOMITABLE_Misc.lsb" Key="Stats_LLINDOMITABLE_Indomitable_CD">Exausted (Indomitable)</content>
+	<content contentuid="ha5e0aad7g6d9eg40a6gb4bfg0ce0db6bd6aa" Source="LLINDOMITABLE_SettingsMenu.lsj">Updated settings.</content>
+	<content contentuid="hde7a5582g0a6eg4c80gbeebg849a11c64e41" Source="LLINDOMITABLE_SettingsMenu.lsj">Indomitable for All Settings</content>
+	<content contentuid="hbb642e2dg1809g4378gb352gc8b837759599" Source="LLINDOMITABLE_SettingsMenu.lsj">Make Indomitable apply on status removal, rather than before a status is applied.&lt;br&gt;This means a character will be immune to knockdowns/etc only after it is &lt;i&gt;initially&lt;/i&gt; applied and removed. (Default)</content>
+	<content contentuid="h9be5168agf739g4b3ag8ef8gae2c0cf90539" Source="LLINDOMITABLE_SettingsMenu.lsj">[Exit]</content>
+	<content contentuid="h31d47256gb444g4dafgbc98g2e19f0bc942b" Source="LLINDOMITABLE_SettingsMenu.lsj">Make Indomitable apply before a status is applied, preventing the initial CC and subsequent attempts until Indomitable is removed.</content>
 </contentList>
