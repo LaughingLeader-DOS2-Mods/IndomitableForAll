@@ -1,6 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+NRD_LuaCall("LLINDOMITABLE_Ext_StoreModVersion");
 KBSECTION
 IF
 TextEventSet("llindom_luareset")

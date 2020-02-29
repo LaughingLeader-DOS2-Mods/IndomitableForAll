@@ -79,6 +79,11 @@ function LLINDOMITABLE_Ext_RemoveTalent(character, talent)
 	end
 end
 
+function LLINDOMITABLE_Ext_StoreModVersion()
+	local info = Ext.GetModInfo("7f5124c0-da04-4ce1-aa73-e22ed00bb711")
+	Osi.DB_LLINDOMITABLE_LastVersion(info.Version)
+end
+
 function LLINDOMITABLE_Ext_UpdateMod()
 	local info = Ext.GetModInfo("7f5124c0-da04-4ce1-aa73-e22ed00bb711")
 	Osi.LLINDOMITABLE_OnGetVersion(info.Version)
