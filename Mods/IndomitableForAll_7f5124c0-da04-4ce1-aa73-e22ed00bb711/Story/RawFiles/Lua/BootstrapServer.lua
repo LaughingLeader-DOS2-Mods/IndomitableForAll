@@ -93,6 +93,8 @@ local immunity_flags = {
 	["ChickenImmunity"] = true,
 	["CrippledImmunity"] = true,
 	["CharmImmunity"] = true,
+	["FearImmunity"] = true,
+	["MadnessImmunity"] = true,
 }
 
 --- No StatusData entries
