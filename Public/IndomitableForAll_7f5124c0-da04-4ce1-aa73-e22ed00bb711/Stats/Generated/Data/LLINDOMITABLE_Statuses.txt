@@ -21,7 +21,7 @@ type "Potion"
 data "Act" "1"
 data "Act part" "0"
 data "Duration" "1"
-data "Flags" "StunImmunity;FreezeImmunity;KnockdownImmunity;PetrifiedImmunity;ChickenImmunity;CrippledImmunity"
+data "Flags" "ChickenImmunity;CrippledImmunity;FearImmunity;FreezeImmunity;KnockdownImmunity;MadnessImmunity;PetrifiedImmunity;StunImmunity"
 data "StatusIcon" "CMP_Talents_Indomitable"
 
 new entry "LLINDOMITABLE_INDOMITABLE_CD"
