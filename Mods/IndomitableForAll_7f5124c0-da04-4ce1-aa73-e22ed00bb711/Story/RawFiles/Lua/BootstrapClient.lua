@@ -22,4 +22,10 @@ local function ModuleLoading_AddIndomatible()
 	Ext.Print("===================================================================")
 end
 
---Ext.RegisterListener("ModuleLoading", ModuleLoading_AddIndomatible)
+local function ModuleSetup_StatOverrides()
+	-- So Madness can be blocked
+	Ext.StatSetAttribute("MADNESS", "ImmuneFlag", "MadnessImmunity")
+end
+
+Ext.RegisterListener("ModuleLoading", ModuleSetup_StatOverrides)
+Ext.RegisterListener("ModuleResume", ModuleSetup_StatOverrides)
