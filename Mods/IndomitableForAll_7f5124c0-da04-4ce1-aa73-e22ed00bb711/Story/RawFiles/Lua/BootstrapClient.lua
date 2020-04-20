@@ -28,4 +28,4 @@ local function ModuleSetup_StatOverrides()
 end
 
 Ext.RegisterListener("ModuleLoading", ModuleSetup_StatOverrides)
-Ext.RegisterListener("ModuleResume", ModuleSetup_StatOverrides)
+--Ext.RegisterListener("ModuleResume", ModuleSetup_StatOverrides)
