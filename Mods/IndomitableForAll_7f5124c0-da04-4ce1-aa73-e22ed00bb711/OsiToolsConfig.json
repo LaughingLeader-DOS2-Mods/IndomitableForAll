@@ -1,5 +1,6 @@
 {
-    "RequiredExtensionVersion": 42,
+    "RequiredExtensionVersion": 43,
+    "ModTable": "IndomitableForAll",
     "FeatureFlags": [
         "OsirisExtensions",
         "Lua"

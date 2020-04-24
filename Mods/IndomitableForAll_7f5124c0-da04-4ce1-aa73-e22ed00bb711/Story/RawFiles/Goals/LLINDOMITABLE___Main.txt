@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-NRD_LuaCall("LLINDOMITABLE_Ext_StoreModVersion");
+NRD_ModCall("IndomitableForAll", "StoreModVersion");
 KBSECTION
 IF
 TextEventSet("llindom_luareset")
@@ -40,7 +40,7 @@ CharacterAddCivilAbilityPoint(_Char, 0);
 PROC
 LLINDOMITABLE_RemoveTalent((CHARACTERGUID)_Char, 0) // NPC
 THEN
-NRD_LuaCall("LLINDOMITABLE_Ext_RemoveTalent", (STRING)_Char, "Indomitable");
+NRD_ModCall("IndomitableForAll", "RemoveTalent", (STRING)_Char, "Indomitable");
 //END_REGION
 
 PROC
@@ -133,7 +133,7 @@ DB_NOOP(1);
 IF
 SavegameLoading(_,_,_,_)
 THEN
-NRD_LuaCall("LLINDOMITABLE_Ext_UpdateMod");
+NRD_ModCall("IndomitableForAll", "UpdateMod");
 
 PROC
 LLINDOMITABLE_OnGetVersion((INTEGER)_Next)

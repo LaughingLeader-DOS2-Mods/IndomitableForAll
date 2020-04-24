@@ -26,7 +26,7 @@ LLINDOMITABLE_ExtraData_Load()
 AND
 DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableChance", _Chance, _Min, _Max)
 THEN
-NRD_LuaCall("LLINDOMITABLE_Ext_SetIndomitableChance", (STRING)_Chance);
+NRD_ModCall("IndomitableForAll", "SetIndomitableChance", (STRING)_Chance);
 
 /*
 PROC

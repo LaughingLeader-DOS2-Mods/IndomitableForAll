@@ -31,7 +31,7 @@ local player_stats = {
 	--["Summon_Earth_Ooze_Player"] = true,
 }
 
-function LLINDOMITABLE_Ext_AddTalent(character, talent)
+function AddTalent(character, talent)
 	if CharacterHasTalent(character, talent) ~= 1 then
 		if Ext.Version() >= 40 then
 			Osi.NRD_CharacterSetPermanentBoostTalent(character, talent, 1)
@@ -42,7 +42,7 @@ function LLINDOMITABLE_Ext_AddTalent(character, talent)
 	end
 end
 
-function LLINDOMITABLE_Ext_RemoveTalent(character, talent)
+function RemoveTalent(character, talent)
 	if CharacterHasTalent(character, talent) == 1 then
 		if Ext.Version() >= 40 then
 			Osi.NRD_CharacterSetPermanentBoostTalent(character, talent, 0)
@@ -53,12 +53,12 @@ function LLINDOMITABLE_Ext_RemoveTalent(character, talent)
 	end
 end
 
-function LLINDOMITABLE_Ext_StoreModVersion()
+function StoreModVersion()
 	local info = Ext.GetModInfo("7f5124c0-da04-4ce1-aa73-e22ed00bb711")
 	Osi.DB_LLINDOMITABLE_LastVersion(info.Version)
 end
 
-function LLINDOMITABLE_Ext_UpdateMod()
+function UpdateMod()
 	local info = Ext.GetModInfo("7f5124c0-da04-4ce1-aa73-e22ed00bb711")
 	Osi.LLINDOMITABLE_OnGetVersion(info.Version)
 end
@@ -175,10 +175,28 @@ local ignored_statuses = {
 
 local INDOMITABLE_CHANCE = 100.0
 
-local function LLINDOMITABLE_CanApplyIndomitable(character, status)
+local function IsResistedStatus(character, status)
 	--if ignored_statuses[status] ~= true and resisted_statuses[status] == true then
-	if (ignored_statuses[status] ~= true and ignore_character(character) == false and 
+	if (ignored_statuses[status] ~= true and ignore_character(character) == false and
 			resisted_statuses[status] ~= nil and is_immune(character, status) == false) then
+		return true
+	end
+	return false
+end
+
+local function IsResistedStatus_QRY(character, status)
+	if IsResistedStatus(character, status) then
+		return 1
+	end
+	return 0
+end
+
+Ext.NewQuery(IsResistedStatus_QRY, "LLINDOMITABLE_QRY_IsResistedStatus", "[in](CHARACTERGUID)_Character, [in](STRING)_Status, [out](INTEGER)_Bool")
+
+
+local function CanApplyIndomitable(character, status)
+	--if ignored_statuses[status] ~= true and resisted_statuses[status] == true then
+	if IsResistedStatus(character, status) then
 		if INDOMITABLE_CHANCE >= 100.0 then
 			return 1
 		elseif INDOMITABLE_CHANCE <= 0.0 then
@@ -190,9 +208,9 @@ local function LLINDOMITABLE_CanApplyIndomitable(character, status)
 	return 0
 end
 
-Ext.NewQuery(LLINDOMITABLE_CanApplyIndomitable, "LLINDOMITABLE_QRY_CanApplyIndomitable", "[in](CHARACTERGUID)_Character, [in](STRING)_Status, [out](INTEGER)_Bool")
+Ext.NewQuery(CanApplyIndomitable, "LLINDOMITABLE_QRY_CanApplyIndomitable", "[in](CHARACTERGUID)_Character, [in](STRING)_Status, [out](INTEGER)_Bool")
 
-function LLINDOMITABLE_Ext_SetIndomitableChance(chance)
+function SetIndomitableChance(chance)
 	INDOMITABLE_CHANCE = tonumber(chance)
 	Ext.Print("[IndomitableForAll:Bootstrap.lua] Set Indomitable Chance to ("..tostring(chance)..").")
 end
