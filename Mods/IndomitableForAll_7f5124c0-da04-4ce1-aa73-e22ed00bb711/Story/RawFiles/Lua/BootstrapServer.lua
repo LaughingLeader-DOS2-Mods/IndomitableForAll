@@ -37,7 +37,7 @@ function AddTalent(character, talent)
 			Osi.NRD_CharacterSetPermanentBoostTalent(character, talent, 1)
 			CharacterAddAttribute(character, "Dummy", 0)
 		else
-			Ext.Print("[IndomitableForAll:Bootstrap.lua] *WARNING* The extender is version ("..Ext.Version()..") but it requires >= 40 to add talents to NPCs!")
+			Ext.Print("[IndomitableForAll] *WARNING* The extender is version ("..Ext.Version()..") but it requires >= 40 to add talents to NPCs!")
 		end
 	end
 end
@@ -48,7 +48,7 @@ function RemoveTalent(character, talent)
 			Osi.NRD_CharacterSetPermanentBoostTalent(character, talent, 0)
 			CharacterAddAttribute(character, "Dummy", 0)
 		else
-			Ext.Print("[IndomitableForAll:Bootstrap.lua] *WARNING* The extender is version ("..Ext.Version()..") but it requires >= 40 to add talents to NPCs!")
+			Ext.Print("[IndomitableForAll] *WARNING* The extender is version ("..Ext.Version()..") but it requires >= 40 to add talents to NPCs!")
 		end
 	end
 end
@@ -105,24 +105,24 @@ local engine_statuses = {
 local resisted_statuses = {}
 
 local function SessionLoading()
-	Ext.Print("[IndomitableForAll:Bootstrap.lua] Building status list for Indomitable.")
-	Ext.Print("===================================================================")
+	Ext.Print("[IndomitableForAll] Building status list for Indomitable.")
+	--Ext.Print("===================================================================")
 	local total = 0
 	for stat,b in pairs(engine_statuses) do
 		total = total + 1
-		Ext.Print("[IndomitableForAll:Bootstrap.lua] Adding engine status ("..stat..").")
+		--Ext.Print("[IndomitableForAll] Adding engine status ("..stat..").")
 		resisted_statuses[stat] = true
 	end
 	for i,stat in pairs(Ext.GetStatEntries("StatusData")) do
 		local flag = Ext.StatGetAttribute(stat, "ImmuneFlag")
 		if immunity_flags[flag] == true then
 			total = total + 1
-			Ext.Print("[IndomitableForAll:Bootstrap.lua] Adding status ("..stat..").")
+			--Ext.Print("[IndomitableForAll] Adding status ("..stat..").")
 			resisted_statuses[stat] = flag
 		end
 	end
-	Ext.Print("[IndomitableForAll:Bootstrap.lua] Listening for "..tostring(total).." statuses for Indomitable.")
-	Ext.Print("===================================================================")
+	Ext.Print("[IndomitableForAll] Listening for "..tostring(total).." statuses for Indomitable.")
+	--Ext.Print("===================================================================")
 end
 
 Ext.RegisterListener("SessionLoading", SessionLoading)
@@ -140,7 +140,7 @@ local ignore_character_tags = {
 local function is_immune(character, status)
 	local flag = resisted_statuses[status]
 	if flag ~= nil and NRD_CharacterGetStatInt(character, flag) > 0 then
-		Ext.Print("[IndomitableForAll:Bootstrap.lua] ("..character..") is immune to ("..status..") via ("..flag..")")
+		--Ext.Print("[IndomitableForAll] ("..character..") is immune to ("..status..") via ("..flag..")")
 		return true
 	end
 	return false
@@ -212,5 +212,5 @@ Ext.NewQuery(CanApplyIndomitable, "LLINDOMITABLE_QRY_CanApplyIndomitable", "[in]
 
 function SetIndomitableChance(chance)
 	INDOMITABLE_CHANCE = tonumber(chance)
-	Ext.Print("[IndomitableForAll:Bootstrap.lua] Set Indomitable Chance to ("..tostring(chance)..").")
+	Ext.Print("[IndomitableForAll] Set Indomitable Chance to ("..tostring(chance)..").")
 end
