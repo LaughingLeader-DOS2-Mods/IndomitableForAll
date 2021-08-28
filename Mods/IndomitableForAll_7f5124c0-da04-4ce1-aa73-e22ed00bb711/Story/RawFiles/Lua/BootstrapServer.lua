@@ -108,10 +108,10 @@ local function SessionLoading()
 	Ext.Print("[IndomitableForAll] Building status list for Indomitable.")
 	--Ext.Print("===================================================================")
 	local total = 0
-	for stat,b in pairs(engine_statuses) do
+	for stat,flag in pairs(engine_statuses) do
 		total = total + 1
 		--Ext.Print("[IndomitableForAll] Adding engine status ("..stat..").")
-		resisted_statuses[stat] = true
+		resisted_statuses[stat] = flag
 	end
 	for i,stat in pairs(Ext.GetStatEntries("StatusData")) do
 		local flag = Ext.StatGetAttribute(stat, "ImmuneFlag")

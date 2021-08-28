@@ -1,0 +1,19 @@
+{
+	"Data": {
+		"Flags": [
+			{
+				"Type" : "Global",
+				"Entries" : [
+					"LLINDOMITABLE_Settings_ApplyOnAttempt"
+				]
+			}
+		]
+	},
+	"MenuOrder": [
+		{
+			"Entries" : [
+				"LLINDOMITABLE_Settings_ApplyOnAttempt"
+			]
+		}
+	]
+}
