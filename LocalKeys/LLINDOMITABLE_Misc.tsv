@@ -8,3 +8,5 @@ LLINDOMITABLE_INNATE	Innate	h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5
 Stats_LLINDOMITABLE_Indomitable	Indomitable	h90819439ga7e8g4edcgac04g086d1f6b4baf
 Stats_LLINDOMITABLE_Indomitable_CD	Exhausted (Indomitable)	h837a7dfbg3021g4587g83a7ga99348afe9f8
 LLINDOMITABLE_StatusText_CooldownReduced	<font color='#CCCC00'>Exhaustion Reduced</font>	h21edce5fgab9eg47cfgb802g38444d59ecfd
+LLINDOMITABLE_Settings_ApplyOnAttempt	Resist Statuses Immediately (On Attempt)	h30224823ga4ffg4901gb1b0gf70060cd1eb1
+LLINDOMITABLE_Settings_ApplyOnAttempt_Description	If enabled, Indomitable will trigger when a resisted status is attempted, rather than when it's removed. In this mode, Indomitable lasts for 1 turn only.	h65bdf073ga1d2g4a3cgaa7fg5423fef45ae1

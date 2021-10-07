@@ -1,9 +1,11 @@
 <contentList>
 	<content contentuid="h212ebe65g3b7cg4bd8gbf53gdf76baf222dd">Indomitable</content>
 	<content contentuid="h21edce5fgab9eg47cfgb802g38444d59ecfd">&lt;font color=&apos;#CCCC00&apos;&gt;Exhaustion Reduced&lt;/font&gt;</content>
+	<content contentuid="h30224823ga4ffg4901gb1b0gf70060cd1eb1">Resist Statuses Immediately (On Attempt)</content>
 	<content contentuid="h31d47256gb444g4dafgbc98g2e19f0bc942b">Make Indomitable apply before a status is applied, preventing the initial CC and subsequent attempts until Indomitable is removed.</content>
 	<content contentuid="h40c50590gf31cg4afcgb2d2g260ad948e2d3">Character is vulnerable to debilitating statuses, and cannot resist them until they recover.</content>
 	<content contentuid="h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5">Innate</content>
+	<content contentuid="h65bdf073ga1d2g4a3cgaa7fg5423fef45ae1">If enabled, Indomitable will trigger when a resisted status is attempted, rather than when it&apos;s removed. In this mode, Indomitable lasts for 1 turn only.</content>
 	<content contentuid="h690c733ag72e8g4d39g8a4dgdf30fccd78fc">None (Disabled)</content>
 	<content contentuid="h837a7dfbg3021g4587g83a7ga99348afe9f8">Exhausted (Indomitable)</content>
 	<content contentuid="h90819439ga7e8g4edcgac04g086d1f6b4baf">Indomitable</content>
