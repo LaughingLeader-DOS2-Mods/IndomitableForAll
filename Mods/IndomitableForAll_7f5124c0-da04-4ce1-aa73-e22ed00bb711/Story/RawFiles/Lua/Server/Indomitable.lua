@@ -69,7 +69,7 @@ Helpers.RegisterProtectedOsirisListener("CharacterStatusApplied", 3, "after", fu
 	elseif status == "LLINDOMITABLE_INDOMITABLE" then
 		RemoveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD")
 	else
-		if HasActiveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD") == 1 and STATUSES.Resisted[status] then
+		if HasActiveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD") == 1 and STATUSES.Resisted[status] ~= nil and not IGNORED.Statuses[status] then
 			local character = Ext.GetCharacter(target)
 			local cooldownStatus = character:GetStatus("LLINDOMITABLE_INDOMITABLE_CD")
 			local cooldownBaseDuration = Ext.ExtraData.LLINDOMITABLE_IndomitableCooldownDuration or 18.0
