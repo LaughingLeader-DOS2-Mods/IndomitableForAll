@@ -5,7 +5,7 @@ local function SaveSettingsFile(data)
 	}))
 end
 
-local function LoadSettings()
+function LoadSettings()
 	local userFile = Ext.LoadFile("IndomitableForAll_StatusSettings.json")
 	if userFile then
 		local settings = Ext.JsonParse(userFile)

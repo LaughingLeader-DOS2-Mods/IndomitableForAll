@@ -67,6 +67,8 @@ local function SessionLoaded()
 	end
 	Ext.Print("[IndomitableForAll] Listening for "..tostring(total).." statuses for Indomitable.")
 	--Ext.Print("===================================================================")
+
+	LoadSettings()
 end
 
 Ext.RegisterListener("SessionLoaded", SessionLoaded)
