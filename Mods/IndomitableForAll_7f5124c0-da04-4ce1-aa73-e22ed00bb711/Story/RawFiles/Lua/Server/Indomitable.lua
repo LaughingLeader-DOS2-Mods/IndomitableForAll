@@ -64,26 +64,34 @@ end
 
 --Reducing the cooldown status' duration when resisted statuses are applied
 Helpers.RegisterProtectedOsirisListener("CharacterStatusApplied", 3, "after", function(target, status, source)
-	if HasActiveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD") == 1 and STATUSES.Resisted[status] then
-		local character = Ext.GetCharacter(target)
-		local cooldownStatus = character:GetStatus("LLINDOMITABLE_INDOMITABLE_CD")
-		local cooldownBaseDuration = Ext.ExtraData.LLINDOMITABLE_IndomitableCooldownDuration or 18.0
-		-- Let resisted statuses reduce cooldown duration when it's at 2 turns or less, so it's guaranteed for one turn
-		if cooldownStatus and cooldownBaseDuration > 0 and cooldownStatus.CurrentLifeTime <= (cooldownBaseDuration - 6.0) then
-			cooldownStatus.CurrentLifeTime = math.max(0.0, cooldownStatus.CurrentLifeTime - 6.0)
-			cooldownStatus.RequestClientSync = true
-			local exaustionText = Ext.GetTranslatedStringFromKey("LLINDOMITABLE_StatusText_CooldownReduced")
-			if not exaustionText or exaustionText == "" then
-				exaustionText = "<font color='#CCCC00'>Exhaustion Reduced</font>"
+	if status == "LLINDOMITABLE_INDOMITABLE_CD" then
+		RemoveStatus(target, "LLINDOMITABLE_INDOMITABLE")
+	elseif status == "LLINDOMITABLE_INDOMITABLE" then
+		RemoveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD")
+	else
+		if HasActiveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD") == 1 and STATUSES.Resisted[status] then
+			local character = Ext.GetCharacter(target)
+			local cooldownStatus = character:GetStatus("LLINDOMITABLE_INDOMITABLE_CD")
+			local cooldownBaseDuration = Ext.ExtraData.LLINDOMITABLE_IndomitableCooldownDuration or 18.0
+			-- Let resisted statuses reduce cooldown duration when it's at 2 turns or less, so it's guaranteed for one turn
+			if cooldownStatus and cooldownBaseDuration > 0 and cooldownStatus.CurrentLifeTime <= (cooldownBaseDuration - 6.0) then
+				cooldownStatus.CurrentLifeTime = math.max(0.0, cooldownStatus.CurrentLifeTime - 6.0)
+				cooldownStatus.RequestClientSync = true
+				local exaustionText = Ext.GetTranslatedStringFromKey("LLINDOMITABLE_StatusText_CooldownReduced")
+				if not exaustionText or exaustionText == "" then
+					exaustionText = "<font color='#CCCC00'>Exhaustion Reduced</font>"
+				end
+				CharacterStatusText(target, exaustionText)
 			end
-			CharacterStatusText(target, exaustionText)
 		end
 	end
 end)
 
 Helpers.RegisterProtectedOsirisListener("CharacterStatusRemoved", 3, "after", function(target, status, nilSource)
 	if status == "LLINDOMITABLE_INDOMITABLE" then
-		ApplyStatus(target, "LLINDOMITABLE_INDOMITABLE_CD", Ext.ExtraData.LLINDOMITABLE_IndomitableCooldownDuration or 18.0, 0, target)
+		if HasActiveStatus(target, "LLINDOMITABLE_INDOMITABLE_CD") == 0 then
+			ApplyStatus(target, "LLINDOMITABLE_INDOMITABLE_CD", Ext.ExtraData.LLINDOMITABLE_IndomitableCooldownDuration or 18.0, 0, target)
+		end
 	else
 		if GlobalGetFlag("LLINDOMITABLE_Settings_ApplyOnAttempt") == 0 then
 			if CanApplyIndomitable(target, status) then
