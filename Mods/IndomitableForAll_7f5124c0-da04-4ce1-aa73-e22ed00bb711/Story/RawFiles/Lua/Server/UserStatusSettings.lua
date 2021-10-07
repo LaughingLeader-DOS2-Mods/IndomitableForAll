@@ -13,7 +13,7 @@ function LoadSettings()
 			if settings.Ignored then
 				for _,v in pairs(settings.Ignored) do
 					if type(v) == "string" then
-						IGNORED.Statuses[v] = true
+						IGNORED.Statuses[v] = false
 					end
 				end
 			end

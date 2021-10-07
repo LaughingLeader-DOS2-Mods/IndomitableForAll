@@ -28,6 +28,16 @@ STATUSES = {
 	}
 }
 
+local defaultIgnored = {
+	["HIT"] = true,
+	["INSURFACE"] = true,
+	["LLINDOMITABLE_INDOMITABLE"] = true,
+	["LLINDOMITABLE_INDOMITABLE_CD"] = true,
+	["InstantKnockdown"] = true,
+	["MATERIAL"] = true,
+	["BOOST"] = true,
+}
+
 IGNORED = {
 	Flags = {
 		["LEADERLIB_IGNORE"] = true,
@@ -49,6 +59,9 @@ IGNORED = {
 }
 
 local function SessionLoaded()
+	for k,v in pairs(defaultIgnored) do
+		IGNORED.Statuses[k] = v
+	end
 	Ext.Print("[IndomitableForAll] Building status list for Indomitable.")
 	--Ext.Print("===================================================================")
 	local total = 0
