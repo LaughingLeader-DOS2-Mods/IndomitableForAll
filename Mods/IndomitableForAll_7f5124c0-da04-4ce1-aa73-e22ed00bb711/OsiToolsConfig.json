@@ -1,5 +1,5 @@
 {
-    "RequiredExtensionVersion": 43,
+    "RequiredExtensionVersion": 55,
     "ModTable": "IndomitableForAll",
     "FeatureFlags": [
         "OsirisExtensions",

@@ -3,66 +3,6 @@ SubGoalCombiner SGC_AND
 INITSECTION
 NRD_ModCall("IndomitableForAll", "StoreModVersion");
 KBSECTION
-IF
-TextEventSet("llindom_luareset")
-THEN
-NRD_LuaReset(1);
-
-IF
-TextEventSet("llindom_settings")
-AND
-CharacterGetHostCharacter(_Host)
-THEN
-Proc_StartDialog(0, "LLINDOMITABLE_SettingsMenu", _Host);
-
-//REGION REMOVE_FROM_ALL
-PROC
-LLINDOMITABLE_RemoveFromAll()
-THEN
-CharacterLaunchOsirisOnlyIterator("LLINDOMITABLE_RemoveTalent");
-
-IF
-StoryEvent((CHARACTERGUID)_Char, "LLINDOMITABLE_RemoveTalent")
-AND
-CharacterIsPlayer(_Char, _IsPlayer)
-THEN
-LLINDOMITABLE_RemoveTalent(_Char, _IsPlayer);
-
-PROC
-LLINDOMITABLE_RemoveTalent((CHARACTERGUID)_Char, 1) // IsPlayer
-AND
-CharacterHasTalent(_Char, "Indomitable", 1)
-THEN
-CharacterRemoveTalent(_Char, "Indomitable");
-NRD_PlayerSetBaseTalent(_Char, "Indomitable", 0);
-CharacterAddCivilAbilityPoint(_Char, 0);
-
-PROC
-LLINDOMITABLE_RemoveTalent((CHARACTERGUID)_Char, 0) // NPC
-THEN
-NRD_ModCall("IndomitableForAll", "RemoveTalent", (STRING)_Char, "Indomitable");
-//END_REGION
-
-PROC
-LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char)
-AND
-GlobalGetFlag("LLINDOMITABLE_Settings_ApplyOnAttempt", _OnAttempt)
-THEN
-LLINDOMITABLE_ApplyIndomitable(_Char, _OnAttempt);
-
-PROC
-LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char, 0)
-AND
-DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableDuration_OnRemoval", _Duration, _, _)
-THEN
-ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE", _Duration, 0, _Char);
-
-PROC
-LLINDOMITABLE_ApplyIndomitable((CHARACTERGUID)_Char, 1)
-AND
-DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableDuration_OnAttempt", _Duration, _, _)
-THEN
-ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE", _Duration, 0, _Char);
 
 //REGION LEADERLIB
 IF
@@ -159,6 +99,22 @@ AND
 NOT SysIsActive("LLINDOMITABLE_Updater_GameStarted")
 THEN
 SysActivateGoal("LLINDOMITABLE_Updater_GameStarted");
+
+// Clearing old DBs
+PROC
+LLINDOMITABLE_OnVersionChanged((INTEGER)_Last, (INTEGER)_Next)
+AND
+_Next == 285343744
+AND
+_Last != -1
+THEN
+SysClear("DB_LLINDOMITABLE_ExtraData_Real", 4);
+SysClear("DB_LLINDOMITABLE_Temp_IndomitableCooldownApplied", 1);
+SysCompleteGoal("LLINDOMITABLE_ExtraData");
+SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
+SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnRemove");
+SysCompleteGoal("LLINDOMITABLE_GS_CombatManager");
+SysCompleteGoal("LLINDOMITABLE_Updater_GameStarted");
 //END_REGION
 EXITSECTION
 ENDEXITSECTION

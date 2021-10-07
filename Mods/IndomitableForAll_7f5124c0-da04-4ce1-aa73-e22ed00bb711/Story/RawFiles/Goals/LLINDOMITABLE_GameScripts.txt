@@ -1,13 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-LLINDOMITABLE_GameScripts_InitSettings();
 KBSECTION
-PROC
-LLINDOMITABLE_GameScripts_InitSettings()
-THEN
-DB_LLINDOMITABLE_GameScripts_Scripts("LLINDOMITABLE_GS_CombatManager");
-DB_LLINDOMITABLE_GameScripts_Scripts("LLINDOMITABLE_GS_IndomitableMechanics");
 
 //REGION SCRIPT_TOGGLING
 IF
@@ -29,61 +23,17 @@ LLINDOMITABLE_GameScripts_Disable();
 PROC
 LLINDOMITABLE_GameScripts_Enable()
 AND
-DB_LLINDOMITABLE_GameScripts_Scripts(_Script)
-AND
-NOT SysIsActive(_Script)
+NOT SysIsActive("LLINDOMITABLE_GS_IndomitableMechanics")
 THEN
-SysActivateGoal(_Script);
+SysActivateGoal("LLINDOMITABLE_GS_IndomitableMechanics");
 
 PROC
 LLINDOMITABLE_GameScripts_Disable()
 AND
-DB_LLINDOMITABLE_GameScripts_Scripts(_Script)
-AND
-SysIsActive(_Script)
+SysIsActive("LLINDOMITABLE_GS_IndomitableMechanics")
 THEN
-SysCompleteGoal(_Script);
+SysCompleteGoal("LLINDOMITABLE_GS_IndomitableMechanics");
 //END_REGION
-
-//REGION TOGGLED_SCRIPTS
-PROC
-LLINDOMITABLE_GameScripts_Enable()
-AND
-GlobalGetFlag("LLINDOMITABLE_Settings_ApplyOnAttempt", _AttemptEnabled)
-THEN
-LLINDOMITABLE_GameScripts_EnableStatusScripts(_AttemptEnabled);
-
-PROC
-LLINDOMITABLE_GameScripts_EnableStatusScripts(0)
-THEN
-SysActivateGoal("LLINDOMITABLE_TS_ApplyOnRemove");
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
-
-PROC
-LLINDOMITABLE_GameScripts_EnableStatusScripts(1)
-THEN
-SysActivateGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnRemove");
-
-PROC
-LLINDOMITABLE_GameScripts_Disable()
-THEN
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnRemove");
-
-IF
-GlobalFlagSet("LLINDOMITABLE_Settings_ApplyOnAttempt")
-THEN
-SysActivateGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnRemove");
-
-IF
-GlobalFlagCleared("LLINDOMITABLE_Settings_ApplyOnAttempt")
-THEN
-SysCompleteGoal("LLINDOMITABLE_TS_ApplyOnAttempt");
-SysActivateGoal("LLINDOMITABLE_TS_ApplyOnRemove");
-//END_REGION
-
 EXITSECTION
 ENDEXITSECTION
 ParentTargetEdge "LaughingLeader_IndomitableForAll"

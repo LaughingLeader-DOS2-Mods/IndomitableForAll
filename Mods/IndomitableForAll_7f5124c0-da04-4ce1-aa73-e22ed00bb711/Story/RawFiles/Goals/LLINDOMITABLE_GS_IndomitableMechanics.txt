@@ -2,20 +2,6 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 KBSECTION
-
-IF
-CharacterStatusRemoved(_Char, "LLINDOMITABLE_INDOMITABLE", _)
-AND
-DB_LLINDOMITABLE_ExtraData_Real("LLINDOMITABLE_IndomitableCooldownDuration", _Duration, _, _)
-THEN
-ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _Duration, 0, _Char);
-DB_LLINDOMITABLE_Temp_IndomitableCooldownApplied(_Char);
-
-IF
-CharacterStatusRemoved(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _)
-THEN
-NOT DB_LLINDOMITABLE_Temp_IndomitableCooldownApplied(_Char);
-
 IF
 CharacterPrecogDying(_Char)
 AND
@@ -36,30 +22,8 @@ RealProduct(_TurnsR, 6.0, _Duration)
 THEN
 NOT DB_LLINDOMITABLE_Temp_IndomitableCooldown(_Char, _Turns);
 ApplyStatus(_Char, "LLINDOMITABLE_INDOMITABLE_CD", _Duration);
-
-//Reduce CD Duration
-IF
-CharacterStatusApplied(_Char, _Status, _)
-AND
-DB_LLINDOMITABLE_Temp_IndomitableCooldownApplied(_Char)
-AND
-LLINDOMITABLE_QRY_IsResistedStatus(_Char, _Status, 1)
-AND
-NRD_StatusGetHandle(_Char, _Status, _Handle)
-AND
-NRD_StatusGetReal(_Char, _Handle, "CurrentLifeTime", _CurrentDuration)
-AND
-_CurrentDuration > 0.0
-AND
-RealSubtract(_CurrentDuration, 3.0, _Next)
-AND
-RealMax(_Next, 0.0, _CappedNext)
-THEN
-NRD_StatusSetReal(_Char, _Handle, "CurrentLifeTime", _CappedNext);
-
 EXITSECTION
 //Cleared when a region ends
-SysClear("DB_LLINDOMITABLE_Temp_IndomitableCooldownApplied", 1);
 SysClear("DB_LLINDOMITABLE_Temp_IndomitableCooldown", 2);
 ENDEXITSECTION
 ParentTargetEdge "LLINDOMITABLE_GameScripts"
