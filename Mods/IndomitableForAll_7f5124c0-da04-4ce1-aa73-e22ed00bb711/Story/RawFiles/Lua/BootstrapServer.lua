@@ -85,5 +85,5 @@ function Helpers.RegisterProtectedOsirisListener(event, arity, state, callback)
 end
 
 Ext.Require("BootstrapShared.lua")
-Ext.Require("Server/IndomitableHelpers.lua")
-Ext.Require("Server/StatusEvents.lua")
+Ext.Require("Server/Indomitable.lua")
+Ext.Require("Server/UserStatusSettings.lua")
