@@ -2,7 +2,7 @@ Key	Content	Handle
 LLINDOMITABLE_DISABLED	None (Disabled)	h690c733ag72e8g4d39g8a4dgdf30fccd78fc
 LLINDOMITABLE_INDOMITABLE_CD_Description	Character is vulnerable to debilitating statuses, and cannot resist them until they recover.	h40c50590gf31cg4afcgb2d2g260ad948e2d3
 LLINDOMITABLE_INDOMITABLE_CD_DisplayName	Exhausted (Indomitable)	he7b114efgfa4cg4096g9ae2gb92da3213b09
-LLINDOMITABLE_INDOMITABLE_Description	Character has immunity to debilitating statuses.<br>Afterwards, <font color='#CCCC00'>Exhausted</font> will set in, <font color='#FF3333'>preventing</font> Indomitable for 3 turns.	hbf10ecd2g96dag4a14gb696g24269ca4a069
+LLINDOMITABLE_INDOMITABLE_Description	Character has immunity to debilitating statuses.<br>Afterwards, <font color='#CCCC00'>Exhaustion</font> will set in, <font color='#FF3333'>preventing</font> Indomitable for 3 turns.	hbf10ecd2g96dag4a14gb696g24269ca4a069
 LLINDOMITABLE_INDOMITABLE_DisplayName	Indomitable	h212ebe65g3b7cg4bd8gbf53gdf76baf222dd
 LLINDOMITABLE_INNATE	Innate	h5d0f7cefg59f2g4d51gab36g7aec5f45a2b5
 Stats_LLINDOMITABLE_Indomitable	Indomitable	h90819439ga7e8g4edcgac04g086d1f6b4baf

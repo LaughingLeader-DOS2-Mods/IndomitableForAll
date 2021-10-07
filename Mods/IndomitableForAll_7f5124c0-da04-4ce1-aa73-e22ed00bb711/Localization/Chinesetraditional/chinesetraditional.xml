@@ -12,7 +12,7 @@
 	<content contentuid="h9be5168agf739g4b3ag8ef8gae2c0cf90539">[Exit]</content>
 	<content contentuid="ha5e0aad7g6d9eg40a6gb4bfg0ce0db6bd6aa">Updated settings.</content>
 	<content contentuid="hbb642e2dg1809g4378gb352gc8b837759599">Make Indomitable apply on status removal, rather than before a status is applied.&lt;br&gt;This means a character will be immune to knockdowns/etc only after it is &lt;i&gt;initially&lt;/i&gt; applied and removed. (Default)</content>
-	<content contentuid="hbf10ecd2g96dag4a14gb696g24269ca4a069">Character has immunity to debilitating statuses.&lt;br&gt;Afterwards, &lt;font color=&apos;#CCCC00&apos;&gt;Exhausted&lt;/font&gt; will set in, &lt;font color=&apos;#FF3333&apos;&gt;preventing&lt;/font&gt; Indomitable for 3 turns.</content>
+	<content contentuid="hbf10ecd2g96dag4a14gb696g24269ca4a069">Character has immunity to debilitating statuses.&lt;br&gt;Afterwards, &lt;font color=&apos;#CCCC00&apos;&gt;Exhaustion&lt;/font&gt; will set in, &lt;font color=&apos;#FF3333&apos;&gt;preventing&lt;/font&gt; Indomitable for 3 turns.</content>
 	<content contentuid="hde7a5582g0a6eg4c80gbeebg849a11c64e41">Indomitable for All Settings</content>
 	<content contentuid="he7b114efgfa4cg4096g9ae2gb92da3213b09">Exhausted (Indomitable)</content>
 </contentList>
