@@ -5,7 +5,7 @@ local function SaveSettingsFile(data)
 	}))
 end
 
-Ext.RegisterOsirisListener("GameStarted", 2, "after", function()
+local function LoadSettings()
 	local userFile = Ext.LoadFile("IndomitableForAll_StatusSettings.json")
 	if userFile then
 		local settings = Ext.JsonParse(userFile)
@@ -34,4 +34,7 @@ Ext.RegisterOsirisListener("GameStarted", 2, "after", function()
 	else
 		SaveSettingsFile()
 	end
-end)
+end
+
+Ext.RegisterOsirisListener("GameStarted", 2, "after", LoadSettings)
+Ext.RegisterListener("ModuleLoading", LoadSettings)
